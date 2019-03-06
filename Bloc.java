@@ -1,5 +1,6 @@
 /**
- *
+ * Cette classe est la classe mère de toutes les autres classes du personnage
+ * En effet , elle englobe les méthode de base du personnage .
  */
 abstract class Bloc {
     /**
