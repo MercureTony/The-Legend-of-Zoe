@@ -3,17 +3,15 @@
  * En effet , elle englobe les méthode de base du personnage .
  */
 abstract class Bloc {
-    /**
-     * Coordonnée sur l'axe des abscisses du bloc
-     */
+
     private int xCoordinate;
-    /**
-     * Coordomnée sur l'axe des ordonnées du bloc
-     */
-    private  int yCoordinate;
+
+    private int yCoordinate;
+
+    protected char bloc;
 
 
-    public Bloc(int xCoordinate , int yCoordinate){
+    public Bloc(int xCoordinate , int yCoordinate , char bloc){
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
     }
@@ -59,7 +57,15 @@ abstract class Bloc {
      *
      * @return
      */
-    public String affichage(){
-        return "";
+    public char affichage(){
+        return this.bloc;
+    }
+
+    /**
+     * @return
+     */
+    public int[][] position(){
+        int[][] position = new int[xCoordinate][yCoordinate];
+        return position;
     }
 }
