@@ -1,7 +1,8 @@
 /**
  * Classe principale du programme.
  *
- * NOTEZ : VOUS NE DEVEZ PAS RENOMMER CETTE CLASSE
+ * @author UYENDE EDZANG Anthony Montand
+ * @author BEAULÉ Étienne
  */
 public class LegendOfZoe {
 
