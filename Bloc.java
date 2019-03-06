@@ -1,5 +1,14 @@
+/**
+ *
+ */
 abstract class Bloc {
+    /**
+     * Coordonnée sur l'axe des abscisses du bloc
+     */
     private int xCoordinate;
+    /**
+     * Coordomnée sur l'axe des ordonnées du bloc
+     */
     private  int yCoordinate;
 
 
