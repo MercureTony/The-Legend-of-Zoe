@@ -6,30 +6,30 @@ abstract class Personnage extends Bloc{
     /**
      * Elle représente la sante du Personnage au cours du jeu
      */
-    private int healthPts;
-
+    protected int healthPts;
     /**
      * Elle représente la santé maximale que peut avoir un Personnage
      * au cours de la partie
      */
-    private double maxHp;
-
+    protected double maxHp;
     /**
      * Elle représente les points d'attaque du Personnage à chaque étape
      * du jeu
      */
-    private double damages;
+    protected double damages;
+
 
     /**
      * @param healthPts
-     * @param maxHp
      * @param damages
+     * @param xCoordinate
+     * @param yCoordinate
+     * @param bloc
      */
-    public Personnage(int healthPts,double maxHp,double damages){
-        // Cannot reference these variable
+    public Personnage(int healthPts,double damages, int xCoordinate, int yCoordinate, char bloc){
         super(xCoordinate,yCoordinate,bloc);
         this.healthPts = healthPts;
-        this.maxHp = maxHp;
+        this.maxHp = healthPts;
         this.damages = damages;
     }
 
@@ -44,7 +44,12 @@ abstract class Personnage extends Bloc{
      * @param newHealthPts
      */
     public void setHealthPts(int newHealthPts){
-        this.healthPts = newHealthPts;
+        if(healthPts < 0)
+        {
+            this.healthPts = 0;
+        }else {
+            this.healthPts = newHealthPts;
+        }
     }
 
     /**
@@ -61,30 +66,25 @@ abstract class Personnage extends Bloc{
         return damages;
     }
 
-
     /**
-     * @param newDamages 
+     * @param newDamages
      */
     public void setDamages(double newDamages){
         this.damages = newDamages;
     }
 
     /**
-     * @param args
+     * @param autre
      */
-    public void move(String[] args){
-        if (args.equals("w")){
-            setX(xCoordinate+1);
-        }
-        else if (args.equals("s")){
-            setX(xCoordinate-1);
-        }
-        else if (args.equals("a")){
-            setY(yCoordinate-1);
-        }
-        else if (args.equals("d")){
-            setY(yCoordinate+1);
-        }
+    public void attaquer(Personnage autre){
+        autre.setHealthPts((int) (autre.getHealthPts() - this.damages));
     }
+
+    /**
+     * 
+     */
+    public void move(){
+
+    };
 
 }
