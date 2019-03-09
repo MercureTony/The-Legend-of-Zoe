@@ -4,9 +4,9 @@
  */
 abstract class Bloc {
 
-    private int xCoordinate;
+    protected int xCoordinate;
 
-    private int yCoordinate;
+    protected int yCoordinate;
 
     protected char bloc;
 
@@ -59,13 +59,5 @@ abstract class Bloc {
      */
     public char affichage(){
         return this.bloc;
-    }
-
-    /**
-     * @return
-     */
-    public int[][] position(){
-        int[][] position = new int[xCoordinate][yCoordinate];
-        return position;
     }
 }
