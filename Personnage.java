@@ -21,22 +21,13 @@ abstract class Personnage extends Bloc{
     private double damages;
 
     /**
-     * Coordonnée sur l'axe des abscisses du bloc
-     */
-    private int x;
-
-    /**
-     * Coordomnée sur l'axe des ordonnées du bloc
-     */
-    private  int y;
-
-    /**
      * @param healthPts
      * @param maxHp
      * @param damages
      */
     public Personnage(int healthPts,double maxHp,double damages){
-        super(x,y);
+        // Cannot reference these variable
+        super(xCoordinate,yCoordinate,bloc);
         this.healthPts = healthPts;
         this.maxHp = maxHp;
         this.damages = damages;
@@ -70,11 +61,30 @@ abstract class Personnage extends Bloc{
         return damages;
     }
 
+
     /**
-     * @param newDamages
+     * @param newDamages 
      */
     public void setDamages(double newDamages){
         this.damages = newDamages;
+    }
+
+    /**
+     * @param args
+     */
+    public void move(String[] args){
+        if (args.equals("w")){
+            setX(xCoordinate+1);
+        }
+        else if (args.equals("s")){
+            setX(xCoordinate-1);
+        }
+        else if (args.equals("a")){
+            setY(yCoordinate-1);
+        }
+        else if (args.equals("d")){
+            setY(yCoordinate+1);
+        }
     }
 
 }
