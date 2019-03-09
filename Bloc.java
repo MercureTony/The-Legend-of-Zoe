@@ -4,10 +4,17 @@
  */
 abstract class Bloc {
 
+    /**
+     * Coordonnée sur l'axe des abscisses du Personnage
+     */
     protected int xCoordinate;
-
+    /**
+     * Coordomnée sur l'axe des ordonnées du Personnage
+     */
     protected int yCoordinate;
-
+    /**
+     * Représentation du Personnage
+     */
     protected char bloc;
 
 
