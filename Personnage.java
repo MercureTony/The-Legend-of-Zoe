@@ -20,6 +20,9 @@ abstract class Personnage extends Bloc{
 
 
     /**
+     *
+     * Constructeur de la classe Personnage
+     *
      * @param healthPts
      * @param damages
      * @param xCoordinate
@@ -34,6 +37,9 @@ abstract class Personnage extends Bloc{
     }
 
     /**
+     *
+     * Getter pour retourner les points de vie du Personnage
+     *
      * @return
      */
     public int getHealthPts(){
@@ -41,6 +47,9 @@ abstract class Personnage extends Bloc{
     }
 
     /**
+     *
+     * Setter pour modifier la santé du Personnage
+     *
      * @param newHealthPts
      */
     public void setHealthPts(int newHealthPts){
@@ -60,6 +69,19 @@ abstract class Personnage extends Bloc{
     }
 
     /**
+     *
+     * Méthoode qui permet de modifier la santé max du Personnage
+     *
+     * @return
+     */
+    public void setMaxHp(){
+
+    }
+
+    /**
+     *
+     * Méthode qui permet de retourner les points d'attaque du Personnage
+     *
      * @return
      */
     public double getDamages(){
@@ -67,6 +89,9 @@ abstract class Personnage extends Bloc{
     }
 
     /**
+     *
+     * Méthode qui permet de changer les points d'attaque du Personnage
+     *
      * @param newDamages
      */
     public void setDamages(double newDamages){
@@ -74,17 +99,20 @@ abstract class Personnage extends Bloc{
     }
 
     /**
+     *
+     * Méthode qui permet d'attaquer un autre Personnage
+     *
      * @param autre
      */
-    public void attaquer(Personnage autre){
+    public void attack(Personnage autre){
         autre.setHealthPts((int) (autre.getHealthPts() - this.damages));
     }
 
     /**
-     * 
+     * Elle permet de déplacer le joueur
      */
     public void move(){
 
-    };
+    }
 
 }
