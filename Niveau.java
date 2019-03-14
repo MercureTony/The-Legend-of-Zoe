@@ -39,12 +39,14 @@ public class Niveau {
                 case "tresor":
                     caseX = Integer.parseInt(itemParts[2]);
                     caseY = Integer.parseInt(itemParts[3]);
-                    this.grille[caseY * LevelGenerator.HAUTEUR + caseX] = new Tresor(caseX, caseY, this.stage, itemParts[1]);
+                    this.grille[caseY * LevelGenerator.HAUTEUR + caseX] = new Tresor(
+                        caseX, caseY, this.stage, itemParts[1]);
                     break;
                 case "monstre":
                     caseX = Integer.parseInt(itemParts[2]);
                     caseY = Integer.parseInt(itemParts[3]);
-                    this.grille[caseY * LevelGenerator.HAUTEUR + caseX] = new Monstre(caseX, caseY, this.stage, itemParts[1]);
+                    this.grille[caseY * LevelGenerator.HAUTEUR + caseX] = new Monstre(
+                        caseX, caseY, this.stage, itemParts[1], niveau);
                     break;
                 case "sortie":
                     this.exitX = Integer.parseInt(itemParts[1]);
@@ -97,19 +99,18 @@ public class Niveau {
 
     /*
      * Prendre toutes les blocs dans le voisinage de 1-près
-     * des coordonnées fournis.
+     * du personnage.
      *
-     * @param int x Coordonnée des x
-     * @param int y Coordonnée des y
+     * @param Personnage le personnage à examiner
      * @return Bloc[] Les blocs adjacents aux coordonnées
      */
-    public Bloc[] voisinage(int x, int y) {
+    public Bloc[] voisinage(Personnage p) {
         Bloc[] voisinage = new Bloc[8] // Voisinage de 3*3 - centre
 
         for (int i = 0; i < this.grille.length(); i++) {
             Bloc bloc = this.grille[i];
             if (bloc != null) {
-                if (Math.abs(bloc.getX() - x) == 1 && Math.abs(bloc.getY() - y) == 1) {
+                if (Math.abs(bloc.getX() - p.getX()) == 1 && Math.abs(bloc.getY() - p.getY()) == 1) {
                     voisinage[i] = bloc;
                 }
             }
@@ -128,5 +129,39 @@ public class Niveau {
      */
     public void detruireMur(int[] mur) {
         this.grille[mur[1] * LevelGenerator.HAUTEUR + mur[0]] = null;
+    }
+
+    /*
+     * Prendre tout les monstres du niveau
+     *
+     * @return Monstre[] Les monstres
+     */
+    public Monstre[] getMonstres() {
+        Monstre[] monstres = new Monstre[(int) (2 * Math.sqrt(this.stage))];
+
+        int i = 0;
+        for (Bloc bloc : this.grille) {
+            if (bloc instanceof Monstre) {
+                monstres[i] = (Monstre) bloc;
+                i++;
+            }
+        }
+        return monstres;
+    }
+
+    /**
+     * Verifier si une case particulière est vide
+     *
+     * @param x Axe des x
+     * @param y Axe des y
+     * @return Disponibilité
+     */
+    public Boolean checkVide(int x, int y) {
+        for (Bloc bloc : this.grille) {
+            if (bloc.getX() == x && bloc.getY() == y) {
+                return false;
+            }
+        }
+        return true;
     }
 }

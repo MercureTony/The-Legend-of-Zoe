@@ -7,20 +7,20 @@ abstract class Bloc {
     /**
      * Coordonnée sur l'axe des abscisses du Personnage
      */
-    protected int xCoordinate;
+    protected int x;
     /**
      * Coordomnée sur l'axe des ordonnées du Personnage
      */
-    protected int yCoordinate;
+    protected int y;
     /**
      * Représentation du Personnage
      */
     protected char bloc;
 
 
-    public Bloc(int xCoordinate , int yCoordinate , char bloc){
-        this.xCoordinate = xCoordinate;
-        this.yCoordinate = yCoordinate;
+    public Bloc(int x, int y, char bloc){
+        this.x = x;
+        this.y = y;
     }
 
     /**
@@ -28,8 +28,8 @@ abstract class Bloc {
      *
      * @return
      */
-    public int getX(){
-        return xCoordinate;
+    public int getX() {
+        return this.x;
     }
 
     /**
@@ -37,30 +37,31 @@ abstract class Bloc {
      *
      * @return
      */
-    public int getY(){
-        return yCoordinate;
+    public int getY() {
+        return this.y;
     }
 
     /**
-     * Méthode qui change la valeur de l'abscisse
+     * Méthode qui change la coordonné des x par une valeur
      *
-     * @param x
+     * @param dx
      */
-    public void setX(int x){
-        this.xCoordinate = x;
+    public void deplacerX(int dx) {
+        this.x += dx;
     }
 
     /**
-     * Méthode qui change la valeur de l'ordonnée
+     * Méthode qui change la coordonné des y par une valeur
      *
-     * @param y
+     * @param dy
      */
-    public void setY(int y){
-        this.yCoordinate = y;
+    public void deplacerY(int dy) {
+        this.y += dy;
     }
 
     /**
-     * Méthode qui permet d'afficher le Bloc
+     * Méthode qui permet d'afficher une réprésentation textuelle
+     * du bloc
      *
      * @return
      */

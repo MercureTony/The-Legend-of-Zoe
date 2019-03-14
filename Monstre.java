@@ -9,14 +9,33 @@ public class Monstre extends Personnage {
         this.difficulte = difficulte;
     }
 
-    public void endommager(int damage, Zoe zoe) {
-        this.enleverVie(damage);
-
-        if (this.estMort()) { this.die(zoe); }
-    }
-
+    @Override
     private void die(Zoe zoe) {
         this.bloc = 'x';
         zoe.affecterItem(this.item);
+    }
+
+    /**
+     * Approcher d'un autre personnage
+     *
+     * @param target Personnage où se rendre
+     */
+    public void approcher(Personnage target) {
+        int dx, dy;
+        // Axe des x
+        if (target.getX() < this.getX()) {
+            dx = -1;
+        } else if (this.getX() < target.getX()) {
+            dx = 1;
+        }
+
+        // Axe des y
+        if (target.getY() < this.getY()) {
+            dy = -1;
+        } else if (this.getY() < target.getY()) {
+            dy = 1;
+        }
+
+        this.deplacer(dx, dy);
     }
 }

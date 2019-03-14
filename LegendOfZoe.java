@@ -21,7 +21,7 @@ public class LegendOfZoe {
         int[] sortie = {0, 0};
 
         // Boucle pour chaque tour
-        while (!(zoe.hasLost() || zoe.hasWon())) {
+        while (!(zoe.estMort() || zoe.hasWon())) {
             // Verifier pour la géneration de nouveau niveau
             // Zoe doit avoir l'hexaforce du niveau et être sur la sortie
             if (zoe.getNbrHexaforce() == niveauActuel && zoe.getX() == sortie[0] && zoe.getY == sortie[1]) {
@@ -36,6 +36,8 @@ public class LegendOfZoe {
             String actions = scanner.nextLine();
 
             for (char ch: actions.toCharArray()) {
+                // Tour de Zoe
+
                 switch (ch) {
                     case 'w':
                         zoe.deplacer(0, 1);
@@ -53,13 +55,32 @@ public class LegendOfZoe {
                         zoe.creuser();
                         break;
                     case 'x':
-                        zoe.attaquer();
+                        zoe.attaquerRegion();
                         break;
                     case 'o':
                         zoe.ouvrirTresor();
                         break;
                     case 'q':
                         System.exit(0);
+                }
+
+                // Tours des monstres en vie
+                Monstre[] monstres = niveau.getMonstres();
+                monstreTour: for (Monstre monstre : monstres) {
+                    if (!monstre.estMort()) {
+
+                        // Attaquer Zoe si assez près
+                        Bloc[] voisinage = niveau.voisinage(monstre);
+                        for (Bloc bloc : voisinage) {
+                            if (bloc instanceof Zoe) {
+                                monstre.attaquer(bloc);
+                                continue monstreTour;
+                            }
+                        }
+
+                        // Approcher sinon
+                        monstre.approcher(zoe);
+                    }
                 }
         }
 
