@@ -11,6 +11,11 @@ public class Niveau {
         this.getGrille();
     }
 
+    /**
+     * @return La stage du niveau
+     */
+    public int getStage() { return this.stage; }
+
     /*
      * Convertir la grille auto-générée en objets
      * Puis d'applatir la grille en tableau 1D
@@ -37,14 +42,14 @@ public class Niveau {
 
             switch (itemParts[0]) {
                 case "tresor":
-                    caseX = Integer.parseInt(itemParts[2]);
-                    caseY = Integer.parseInt(itemParts[3]);
+                    int caseX = Integer.parseInt(itemParts[2]);
+                    int caseY = Integer.parseInt(itemParts[3]);
                     this.grille[caseY * LevelGenerator.HAUTEUR + caseX] = new Tresor(
                         caseX, caseY, this.stage, itemParts[1]);
                     break;
                 case "monstre":
-                    caseX = Integer.parseInt(itemParts[2]);
-                    caseY = Integer.parseInt(itemParts[3]);
+                    int caseX = Integer.parseInt(itemParts[2]);
+                    int caseY = Integer.parseInt(itemParts[3]);
                     this.grille[caseY * LevelGenerator.HAUTEUR + caseX] = new Monstre(
                         caseX, caseY, this.stage, itemParts[1], niveau);
                     break;

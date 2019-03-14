@@ -73,7 +73,7 @@ public class LegendOfZoe {
                         Bloc[] voisinage = niveau.voisinage(monstre);
                         for (Bloc bloc : voisinage) {
                             if (bloc instanceof Zoe) {
-                                monstre.attaquer(bloc);
+                                monstre.attaquer((int) Math.max(0.4 * niveau.getStage(), 1.0), bloc);
                                 continue monstreTour;
                             }
                         }
@@ -82,6 +82,7 @@ public class LegendOfZoe {
                         monstre.approcher(zoe);
                     }
                 }
+            }
         }
 
         if (zoe.hasLost()) {

@@ -7,7 +7,7 @@ public class Zoe extends Personnage {
 
     /**
      * Déterminer si Zoe à gagné toutes les niveaux.
-     * Il y a 6b niveaux et chaqu'un donne une morceau
+     * Il y a 6 niveaux et chaqu'un donne une morceau
      * du hexaforce.
      *
      * @return Si Zoe à toutes les pièces de l'Hexaforce

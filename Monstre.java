@@ -3,10 +3,17 @@ public class Monstre extends Personnage {
     private String item;
     private int difficulte;
     
-    public Monstre(int x, int y, String item, int difficulte) {
-        super((int) Math.max(0.6 * difficulte, 1.0), x, y, '@');
+    /**
+     * Constructeur du monstre
+     *
+     * @param x
+     * @param y
+     * @param niveau
+     * @param item
+     */
+    public Monstre(int x, int y, Niveau niveau, String item) {
+        super((int) Math.max(0.6 * niveau.getStage(), 1.0), x, y, niveau, '@');
         this.item = item;
-        this.difficulte = difficulte;
     }
 
     @Override
