@@ -32,4 +32,24 @@ public class Zoe extends Personnage {
         super(x, y, '&');
         this.healthPts = 5;
     }
+
+    /*
+     * Donner un effet sur Zoe grace à un item
+     * donnée soit par un trésor ou monstre.
+     *
+     * @param item L'item obtenue
+     */
+    public void affecterItem(String item) {
+        switch (item) {
+            case "coeur":
+                this.enleverVie(-1);
+                break;
+            case "potionvie":
+                this.setHealthPts(5); // Max de Zoe: 5
+                break;
+            case "hexaforce":
+                this.hexaforce++;
+                break;
+        }
+    }
 }

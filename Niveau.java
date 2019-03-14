@@ -1,8 +1,10 @@
 public class Niveau {
 
-    private Bloc[][] grille = new Bloc[LevelGenerator.LARGEUR][LevelGenerator.HAUTEUR];
+    private Bloc[] grille = new Bloc[LevelGenerator.LARGEUR * LevelGenerator.HAUTEUR];
     private int stage;
     private Zoe zoe;
+
+    private int exitX, exitY;
 
     public Niveau(int stage, Zoe zoe) {
         this.stage = stage;
@@ -23,7 +25,7 @@ public class Niveau {
         for (int y = 0; y < murs.length(), y++) {
             for (int x = 0; x < murs[0].length(), x++) {
                 if (murs[y][x]) {
-                    this.grille[y][x] = new Mur(x, y);
+                    this.grille[y * LevelGenerator.HAUTEUR + x] = new Mur(x, y);
                 }
             }
         }
@@ -36,21 +38,28 @@ public class Niveau {
 
             switch (itemParts[0]) {
                 case "tresor":
-                    this.grille[(int) itemParts[3]][(int) itemParts[2]] = new Tresor(
-                        (int) itemParts[2], (int) itemParts[3], this.stage, itemParts[1]);
+                    caseX = (int) itemParts[2];
+                    caseY = (int) itemParts[3];
+                    this.grille[caseY * LevelGenerator.HAUTEUR + caseX] = new Tresor(caseX, caseY, this.stage, itemParts[1]);
                     break;
                 case "monstre":
-                    this.grille[(int) itemParts[3]][(int) itemParts[2]] = new Monstre(
-                        (int) itemParts[2], (int) itemParts[3], this.stage, itemParts[1]);
+                    caseX = (int) itemParts[2];
+                    caseY = (int) itemParts[3];
+                    this.grille[caseY * LevelGenerator.HAUTEUR + caseX] = new Monstre(caseX, caseY, this.stage, itemParts[1]);
                     break;
                 case "sortie":
-                    this.grille[(int) itemParts[2]][(int) itemParts[1]] = new Sortie(
-                        (int) itemParts[1], (int) itemParts[2], this.stage + 1);
+                    this.exitX = (int) itemParts[1];
+                    this.exitY = (int) itemParts[2];
+                    this.grille[this.exitY * LevelGenerator.HAUTEUR + this.exitX] = new Sortie(this.exitX, this.exitY);
                     break;
                 case "zoe":
                     this.zoe.setPosition((int) itemParts[1], (int) itemParts[2]);
                     break;
             }
         }
+    }
+
+    public int[] getExit() {
+        return {this.exitX, this.exitY};
     }
 }
