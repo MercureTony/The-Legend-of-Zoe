@@ -37,14 +37,15 @@ public class Niveau {
             switch (itemParts[0]) {
                 case "tresor":
                     this.grille[(int) itemParts[3]][(int) itemParts[2]] = new Tresor(
-                        x, y, this.stage, itemParts[1]);
+                        (int) itemParts[2], (int) itemParts[3], this.stage, itemParts[1]);
                     break;
                 case "monstre":
                     this.grille[(int) itemParts[3]][(int) itemParts[2]] = new Monstre(
-                        x, y, this.stage, itemParts[1]);
+                        (int) itemParts[2], (int) itemParts[3], this.stage, itemParts[1]);
                     break;
                 case "sortie":
-                    this.grille[(int) itemParts[3]][(int) itemParts[2]] = new Sortie(x, y, this.stage + 1);
+                    this.grille[(int) itemParts[2]][(int) itemParts[1]] = new Sortie(
+                        (int) itemParts[1], (int) itemParts[2], this.stage + 1);
                     break;
                 case "zoe":
                     this.zoe.setPosition((int) itemParts[1], (int) itemParts[2]);
