@@ -33,6 +33,14 @@ public class Zoe extends Personnage {
         this.healthPts = 5;
     }
 
+    public void setNiveau(Niveau niveau) {
+        this.niveau = niveau;
+
+        int[] entree = this.niveau.getEntrance();
+        this.xCoordinate = entree[0];
+        this.yCoordinate = entree[1];
+    }
+
     /*
      * Donner un effet sur Zoe grace à un item
      * donnée soit par un trésor ou monstre.
@@ -50,6 +58,19 @@ public class Zoe extends Personnage {
             case "hexaforce":
                 this.hexaforce++;
                 break;
+        }
+    }
+
+    /*
+     * Creuser les murs adjacents à Zoe
+     */
+    public void creuser() {
+        Bloc[] blocs = this.niveau.voisinage();
+
+        for (Bloc bloc : blocs) {
+            if (bloc instanceof Mur) {
+                this.niveau.detruireMur({bloc.getX(), bloc.getY()});
+            }
         }
     }
 }

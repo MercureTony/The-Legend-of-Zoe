@@ -2,13 +2,12 @@ public class Niveau {
 
     private Bloc[] grille = new Bloc[LevelGenerator.LARGEUR * LevelGenerator.HAUTEUR];
     private int stage;
-    private Zoe zoe;
 
+    private int entrX, entrY;
     private int exitX, exitY;
 
-    public Niveau(int stage, Zoe zoe) {
+    public Niveau(int stage) {
         this.stage = stage;
-        this.zoe = zoe;
         this.getGrille();
     }
 
@@ -53,7 +52,8 @@ public class Niveau {
                     this.grille[this.exitY * LevelGenerator.HAUTEUR + this.exitX] = new Sortie(this.exitX, this.exitY);
                     break;
                 case "zoe":
-                    this.zoe.setPosition((int) itemParts[1], (int) itemParts[2]);
+                    this.entrX = (int) itemParts[1];
+                    this.entrY = (int) itemParts[2];
                     break;
             }
         }
@@ -61,5 +61,72 @@ public class Niveau {
 
     public int[] getExit() {
         return {this.exitX, this.exitY};
+    }
+
+    public int[] getEntrance() {
+        return {this.entrX, this.exitY};
+    }
+
+    /*
+     * Imprime le niveau dans la console
+     */
+    public void affichage() {
+
+        // Créer tableau 2D pour tous les blocs
+        char[][] textGrille = new char[LevelGenerator.HAUTEUR][LevelGenerator.LARGEUR];
+
+        for (Bloc bloc : this.grille) {
+            if (bloc != null) {
+                textGrille[bloc.getY()][bloc.getX()] = bloc.affichage();
+            }
+        }
+
+        // Convertir en tableau 1D de Strings (& les imprimer)
+        for (char[] rangee : textGrille) {
+            String concat = "";
+            for (char blocChar : rangee) {
+                if (blocChar != null) {
+                    concat += blocChar;
+                } else {
+                    concat += " ";
+                }
+            }
+            System.out.println(concat);
+        }
+    }
+
+    /*
+     * Prendre toutes les blocs dans le voisinage de 1-près
+     * des coordonnées fournis.
+     *
+     * @param int x Coordonnée des x
+     * @param int y Coordonnée des y
+     * @return Bloc[] Les blocs adjacents aux coordonnées
+     */
+    public Bloc[] voisinage(int x, int y) {
+        Bloc[] voisinage = new Bloc[8] // Voisinage de 3*3 - centre
+
+        for (int i = 0; i < this.grille.length(); i++) {
+            Bloc bloc = this.grille[i];
+            if (bloc != null) {
+                if (Math.abs(bloc.getX() - x) == 1 && Math.abs(bloc.getY() - y) == 1) {
+                    voisinage[i] = bloc;
+                }
+            }
+        }
+        return voisinage;
+    }
+
+    /*
+     * Détruire les murs dans la grille
+     * L'objet Zoe décide quel bloc
+     *
+     * Vue que les murs ne déplacent pas, on peut calculer la position
+     * dans le tableau de blocs (this.grille) à partir des coordonnées
+     *
+     * @param int[] mur à enlèver (format {x, y})
+     */
+    public void detruireMur(int[] mur) {
+        this.grille[mur[1] * LevelGenerator.HAUTEUR + mur[0]] = null;
     }
 }

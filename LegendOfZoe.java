@@ -21,8 +21,9 @@ public class LegendOfZoe {
             // Zoe doit avoir l'hexaforce du niveau et être sur la sortie
             if (zoe.getNbrHexaforce() == niveauActuel && zoe.getX() == sortie[0] && zoe.getY == sortie[1]) {
                 niveauActuel++;
-                niveau = new Niveau(niveauActuel, zoe);
+                niveau = new Niveau(niveauActuel);
                 sortie = niveau.getExit();
+                zoe.setNiveau(niveau);
             }
 
             // Scanner...
