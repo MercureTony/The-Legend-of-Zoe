@@ -37,23 +37,23 @@ public class Niveau {
 
             switch (itemParts[0]) {
                 case "tresor":
-                    caseX = (int) itemParts[2];
-                    caseY = (int) itemParts[3];
+                    caseX = Integer.parseInt(itemParts[2]);
+                    caseY = Integer.parseInt(itemParts[3]);
                     this.grille[caseY * LevelGenerator.HAUTEUR + caseX] = new Tresor(caseX, caseY, this.stage, itemParts[1]);
                     break;
                 case "monstre":
-                    caseX = (int) itemParts[2];
-                    caseY = (int) itemParts[3];
+                    caseX = Integer.parseInt(itemParts[2]);
+                    caseY = Integer.parseInt(itemParts[3]);
                     this.grille[caseY * LevelGenerator.HAUTEUR + caseX] = new Monstre(caseX, caseY, this.stage, itemParts[1]);
                     break;
                 case "sortie":
-                    this.exitX = (int) itemParts[1];
-                    this.exitY = (int) itemParts[2];
+                    this.exitX = Integer.parseInt(itemParts[1]);
+                    this.exitY = Integer.parseInt(itemParts[2]);
                     this.grille[this.exitY * LevelGenerator.HAUTEUR + this.exitX] = new Sortie(this.exitX, this.exitY);
                     break;
                 case "zoe":
-                    this.entrX = (int) itemParts[1];
-                    this.entrY = (int) itemParts[2];
+                    this.entrX = Integer.parseInt(itemParts[1]);
+                    this.entrY = Integer.parseInt(itemParts[2]);
                     break;
             }
         }

@@ -4,11 +4,16 @@
  * @author UYENDE EDZANG Anthony Montand
  * @author BEAULÉ Étienne
  */
+
+import java.util.Scanner;
+
 public class LegendOfZoe {
 
     public static void main(String[] args) {
 
         Messages.afficherIntro();
+
+        Scanner scanner = new Scanner(System.in);
 
         Zoe zoe = new Zoe(0, 0);
         int niveauActuel = 0;
@@ -26,7 +31,36 @@ public class LegendOfZoe {
                 zoe.setNiveau(niveau);
             }
 
-            // Scanner...
+            niveau.affichage();
+
+            String actions = scanner.nextLine();
+
+            for (char ch: actions.toCharArray()) {
+                switch (ch) {
+                    case 'w':
+                        zoe.deplacer(0, 1);
+                        break;
+                    case 'a':
+                        zoe.deplacer(-1, 0);
+                        break;
+                    case 's':
+                        zoe.deplacer(0, -1);
+                        break;
+                    case 'd':
+                        zoe.deplacer(1, 0);
+                        break;
+                    case 'c':
+                        zoe.creuser();
+                        break;
+                    case 'x':
+                        zoe.attaquer();
+                        break;
+                    case 'o':
+                        zoe.ouvrirTresor();
+                        break;
+                    case 'q':
+                        System.exit(0);
+                }
         }
 
         if (zoe.hasLost()) {
