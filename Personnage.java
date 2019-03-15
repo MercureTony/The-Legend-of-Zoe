@@ -97,7 +97,7 @@ abstract class Personnage extends Bloc {
      * @param dx Déplacement dans l'axe des x
      * @param dy Déplacement dans l'axe des y
      */
-    public void deplacer(dx, dy) {
+    public void deplacer(int dx, int dy) {
         if (this.niveau.checkVide(this.getX() + dx, this.getY() + dy)) {
             this.deplacerX(dx); this.deplacerY(dy);
         }

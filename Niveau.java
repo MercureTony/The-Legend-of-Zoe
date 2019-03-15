@@ -26,8 +26,8 @@ public class Niveau {
 
         // Créer les objects Mur
         boolean[][] murs = generee.getKey();
-        for (int y = 0; y < murs.length(), y++) {
-            for (int x = 0; x < murs[0].length(), x++) {
+        for (int y = 0; y < murs.length; y++) {
+            for (int x = 0; x < murs[0].length; x++) {
                 if (murs[y][x]) {
                     this.grille[y * LevelGenerator.HAUTEUR + x] = new Mur(x, y);
                 }
@@ -40,18 +40,19 @@ public class Niveau {
         for (String item : items) {
             String[] itemParts = item.split(":");
 
+            int caseX, caseY;
+
             switch (itemParts[0]) {
                 case "tresor":
-                    int caseX = Integer.parseInt(itemParts[2]);
-                    int caseY = Integer.parseInt(itemParts[3]);
-                    this.grille[caseY * LevelGenerator.HAUTEUR + caseX] = new Tresor(
-                        caseX, caseY, this.stage, itemParts[1]);
+                    caseX = Integer.parseInt(itemParts[2]);
+                    caseY = Integer.parseInt(itemParts[3]);
+                    this.grille[caseY * LevelGenerator.HAUTEUR + caseX] = new Tresor(caseX, caseY, itemParts[1]);
                     break;
                 case "monstre":
-                    int caseX = Integer.parseInt(itemParts[2]);
-                    int caseY = Integer.parseInt(itemParts[3]);
+                    caseX = Integer.parseInt(itemParts[2]);
+                    caseY = Integer.parseInt(itemParts[3]);
                     this.grille[caseY * LevelGenerator.HAUTEUR + caseX] = new Monstre(
-                        caseX, caseY, this.stage, itemParts[1], niveau);
+                        caseX, caseY, this, itemParts[1]);
                     break;
                 case "sortie":
                     this.exitX = Integer.parseInt(itemParts[1]);
@@ -66,12 +67,20 @@ public class Niveau {
         }
     }
 
+    /**
+     * @return Prendre coordonnées de la sortie
+     */
     public int[] getExit() {
-        return {this.exitX, this.exitY};
+        int[] coord = {this.exitX, this.exitY};
+        return coord;
     }
 
+    /**
+     * @return Prendre coordonnées de l'entrée de Zoe
+     */
     public int[] getEntrance() {
-        return {this.entrX, this.exitY};
+        int[] coord = {this.entrX, this.entrY};
+        return coord;
     }
 
     /*
@@ -92,7 +101,7 @@ public class Niveau {
         for (char[] rangee : textGrille) {
             String concat = "";
             for (char blocChar : rangee) {
-                if (blocChar != null) {
+                if (blocChar != '\u0000') { // Null 0x0000
                     concat += blocChar;
                 } else {
                     concat += " ";
@@ -110,9 +119,9 @@ public class Niveau {
      * @return Bloc[] Les blocs adjacents aux coordonnées
      */
     public Bloc[] voisinage(Personnage p) {
-        Bloc[] voisinage = new Bloc[8] // Voisinage de 3*3 - centre
+        Bloc[] voisinage = new Bloc[8]; // Voisinage de 3*3 - centre
 
-        for (int i = 0; i < this.grille.length(); i++) {
+        for (int i = 0; i < this.grille.length; i++) {
             Bloc bloc = this.grille[i];
             if (bloc != null) {
                 if (Math.abs(bloc.getX() - p.getX()) == 1 && Math.abs(bloc.getY() - p.getY()) == 1) {

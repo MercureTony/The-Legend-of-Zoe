@@ -17,14 +17,14 @@ public class LegendOfZoe {
 
         Zoe zoe = new Zoe(0, 0);
         int niveauActuel = 0;
-        Niveau niveau;
+        Niveau niveau = new Niveau(niveauActuel);
         int[] sortie = {0, 0};
 
         // Boucle pour chaque tour
         while (!(zoe.estMort() || zoe.hasWon())) {
             // Verifier pour la géneration de nouveau niveau
             // Zoe doit avoir l'hexaforce du niveau et être sur la sortie
-            if (zoe.getNbrHexaforce() == niveauActuel && zoe.getX() == sortie[0] && zoe.getY == sortie[1]) {
+            if (zoe.getNbrHexaforce() == niveauActuel && zoe.getX() == sortie[0] && zoe.getY() == sortie[1]) {
                 niveauActuel++;
                 niveau = new Niveau(niveauActuel);
                 sortie = niveau.getExit();
@@ -73,7 +73,7 @@ public class LegendOfZoe {
                         Bloc[] voisinage = niveau.voisinage(monstre);
                         for (Bloc bloc : voisinage) {
                             if (bloc instanceof Zoe) {
-                                monstre.attaquer((int) Math.max(0.4 * niveau.getStage(), 1.0), bloc);
+                                monstre.attaquer((int) Math.max(0.4 * niveau.getStage(), 1.0), (Zoe) bloc);
                                 continue monstreTour;
                             }
                         }
@@ -85,7 +85,7 @@ public class LegendOfZoe {
             }
         }
 
-        if (zoe.hasLost()) {
+        if (zoe.estMort()) {
             Messages.afficherDefaite();
         } else if (zoe.hasWon()) {
             Messages.afficherVictoire();

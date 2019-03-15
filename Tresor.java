@@ -12,8 +12,8 @@ public class Tresor extends Bloc {
      * @param String item L'effet du trésor sur Zoe
      */
     public Tresor(int x, int y, String item) {
-        this.item = item;
         super(x, y, '$');
+        this.item = item;
     }
 
     /*
@@ -24,6 +24,6 @@ public class Tresor extends Bloc {
      */
     public void ouvrir(Zoe zoe) {
         this.bloc = '_';
-        Zoe.affecterItem(this.item);
+        zoe.affecterItem(this.item);
     }
 }

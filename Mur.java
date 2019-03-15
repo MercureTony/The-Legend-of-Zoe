@@ -1,12 +1,12 @@
 public class Mur extends Bloc {
     
-    /*
+    /**
      * Constructeur
      *
-     * @param int x Position x
-     * @param int y Position y
+     * @param x Position x
+     * @param y Position y
      */
-    public Mur(x, y) {
+    public Mur(int x, int y) {
         // Spécification de '#' comme caractère
         super(x, y, '#');
     }

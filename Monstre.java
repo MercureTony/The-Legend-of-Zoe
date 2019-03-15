@@ -12,13 +12,18 @@ public class Monstre extends Personnage {
      * @param item
      */
     public Monstre(int x, int y, Niveau niveau, String item) {
-        super((int) Math.max(0.6 * niveau.getStage(), 1.0), x, y, niveau, '@');
+        super((int) Math.max(0.6 * niveau.getStage(), 1.0), x, y, '@', niveau);
         this.item = item;
     }
 
-    @Override
-    private void die(Zoe zoe) {
+    /**
+     * On reconnait que seulement Zoe aurait pu activer cette méthode
+     *
+     * @param source Personnage (Zoe) qui l'a tué
+     */
+    private void die(Personnage source) {
         this.bloc = 'x';
+        Zoe zoe = (Zoe) source;
         zoe.affecterItem(this.item);
     }
 
@@ -28,7 +33,7 @@ public class Monstre extends Personnage {
      * @param target Personnage où se rendre
      */
     public void approcher(Personnage target) {
-        int dx, dy;
+        int dx = 0, dy = 0;
         // Axe des x
         if (target.getX() < this.getX()) {
             dx = -1;

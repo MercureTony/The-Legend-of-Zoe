@@ -17,13 +17,18 @@ public class Zoe extends Personnage {
     }
 
     /**
+     * @return nombre de pieces Hexaforce
+     */
+    public int getNbrHexaforce() { return this.hexaforce; }
+
+    /**
      * Constructeur de la classe Zoe
      *
      * @param x
      * @param y
      */
     public Zoe(int x, int y) {
-        super(this.ZOE_MAX_VIES, x, y, '&');
+        super(Zoe.ZOE_MAX_VIES, x, y, '&', null);
     }
 
     public void setNiveau(Niveau niveau) {
@@ -77,7 +82,8 @@ public class Zoe extends Personnage {
 
         for (Bloc bloc : blocs) {
             if (bloc instanceof Personnage) {
-                (Personnage) bloc.attaquer(this.ZOE_DAMAGE, this);
+                Personnage p = (Personnage) bloc;
+                p.attaquer(this.ZOE_DAMAGE, this);
             }
         }
     }
@@ -90,7 +96,8 @@ public class Zoe extends Personnage {
 
         for (Bloc bloc : blocs) {
             if (bloc instanceof Tresor) {
-                (Tresor) bloc.ouvrir(this);
+                Tresor t = (Tresor) bloc;
+                t.ouvrir(this);
             }
         }
     }
