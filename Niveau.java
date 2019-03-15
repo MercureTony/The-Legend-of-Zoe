@@ -1,9 +1,10 @@
 public class Niveau {
 
     private Bloc[] grille = new Bloc[LevelGenerator.LARGEUR * LevelGenerator.HAUTEUR];
+    private Zoe zoe;
+
     private int stage;
 
-    private int entrX, entrY;
     private int exitX, exitY;
 
     public Niveau(int stage) {
@@ -59,8 +60,10 @@ public class Niveau {
                     this.grille[this.exitY * LevelGenerator.HAUTEUR + this.exitX] = new Sortie(this.exitX, this.exitY);
                     break;
                 case "zoe":
-                    this.entrX = Integer.parseInt(itemParts[1]);
-                    this.entrY = Integer.parseInt(itemParts[2]);
+                    caseX = Integer.parseInt(itemParts[1]);
+                    caseY = Integer.parseInt(itemParts[2]);
+                    this.zoe = new Zoe(caseX, caseY, this);
+                    this.grille[caseY * LevelGenerator.HAUTEUR + caseX] = this.zoe;
                     break;
             }
         }
@@ -75,14 +78,11 @@ public class Niveau {
     }
 
     /**
-     * @return Prendre coordonnées de l'entrée de Zoe
+     * @return Zoe
      */
-    public int[] getEntrance() {
-        int[] coord = {this.entrX, this.entrY};
-        return coord;
-    }
+    public Zoe getZoe() { return this.zoe; }
 
-    /*
+    /**
      * Imprime le niveau dans la console
      */
     public void affichage() {
@@ -120,11 +120,13 @@ public class Niveau {
     public Bloc[] voisinage(Personnage p) {
         Bloc[] voisinage = new Bloc[8]; // Voisinage de 3*3 - centre
 
+        int j = 0;
         for (int i = 0; i < this.grille.length; i++) {
             Bloc bloc = this.grille[i];
             if (bloc != null) {
-                if (Math.abs(bloc.getX() - p.getX()) == 1 && Math.abs(bloc.getY() - p.getY()) == 1) {
-                    voisinage[i] = bloc;
+                if (Math.abs(bloc.getX() - p.getX()) <= 1 && Math.abs(bloc.getY() - p.getY()) <= 1) {
+                    voisinage[j] = bloc;
+                    j++;
                 }
             }
         }
@@ -170,11 +172,25 @@ public class Niveau {
      * @return Disponibilité
      */
     public Boolean checkVide(int x, int y) {
+        // Si en-dehors de la carte
+        if (x < 0 || y < 0) { return false; }
         if (x >= LevelGenerator.LARGEUR || y >= LevelGenerator.HAUTEUR) {
             return false;
         }
+
+        // Si bloc actif
         for (Bloc bloc : this.grille) {
-            if (bloc.getX() == x && bloc.getY() == y) {
+            if (bloc != null && bloc.getX() == x && bloc.getY() == y) {
+                // Blocs non-actives
+                if (bloc instanceof Tresor) {
+                    Tresor t = (Tresor) bloc;
+                    return t.estOuvert();
+                }
+                if (bloc instanceof Monstre) {
+                    Monstre m = (Monstre) bloc;
+                    return m.estMort();
+                }
+                if (bloc instanceof Sortie) { return true; }
                 return false;
             }
         }

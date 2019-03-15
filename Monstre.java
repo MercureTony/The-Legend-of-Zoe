@@ -21,7 +21,7 @@ public class Monstre extends Personnage {
      *
      * @param source Personnage (Zoe) qui l'a tué
      */
-    private void die(Personnage source) {
+    protected void die(Personnage source) {
         this.bloc = 'x';
         Zoe zoe = (Zoe) source;
         zoe.affecterItem(this.item);

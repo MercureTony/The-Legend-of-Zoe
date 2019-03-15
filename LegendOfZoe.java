@@ -17,7 +17,7 @@ public class LegendOfZoe {
 
         Niveau niveau = new Niveau(1);
         niveau.creerGrille();
-        Zoe zoe = new Zoe(niveau);
+        Zoe zoe = niveau.getZoe();
         int[] sortie = niveau.getExit();
 
         // Boucle pour chaque tour
@@ -30,9 +30,10 @@ public class LegendOfZoe {
                 niveau = new Niveau(niveau.getStage() + 1);
                 niveau.creerGrille();
                 sortie = niveau.getExit();
-                zoe.setNiveau(niveau);
+                zoe = niveau.getZoe();
             }
 
+            System.out.println("Vies : " + zoe.getHealthPts() + " ; HF : " + zoe.getNbrHexaforce() );
             niveau.affichage();
 
             String actions = scanner.nextLine();
@@ -42,13 +43,13 @@ public class LegendOfZoe {
 
                 switch (ch) {
                     case 'w':
-                        zoe.deplacer(0, 1);
+                        zoe.deplacer(0, -1);
                         break;
                     case 'a':
                         zoe.deplacer(-1, 0);
                         break;
                     case 's':
-                        zoe.deplacer(0, -1);
+                        zoe.deplacer(0, 1);
                         break;
                     case 'd':
                         zoe.deplacer(1, 0);

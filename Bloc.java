@@ -21,6 +21,7 @@ abstract class Bloc {
     public Bloc(int x, int y, char bloc){
         this.x = x;
         this.y = y;
+        this.bloc = bloc;
     }
 
     /**
@@ -65,7 +66,5 @@ abstract class Bloc {
      *
      * @return
      */
-    public char affichage(){
-        return this.bloc;
-    }
+    public char affichage() { return this.bloc; }
 }

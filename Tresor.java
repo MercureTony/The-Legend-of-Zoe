@@ -1,8 +1,9 @@
 public class Tresor extends Bloc {
 
     private String item;
+    private Boolean ouvert = false;
 
-    /*
+    /**
      * Constructeur de trésor
      * Chaque trésor commence fermé avec un item
      * à disposition.
@@ -16,7 +17,7 @@ public class Tresor extends Bloc {
         this.item = item;
     }
 
-    /*
+    /**
      * Ouvrir le coffre
      * Rends le trésor inutilisable
      *
@@ -24,6 +25,11 @@ public class Tresor extends Bloc {
      */
     public void ouvrir(Zoe zoe) {
         this.bloc = '_';
+        this.ouvert = true;
         zoe.affecterItem(this.item);
+    }
+
+    public Boolean estOuvert() {
+        return this.ouvert;
     }
 }

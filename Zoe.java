@@ -26,21 +26,11 @@ public class Zoe extends Personnage {
      *
      * @param x
      * @param y
+     * @oaram niveau
      */
-    public Zoe(int x, int y) {
-        super(Zoe.ZOE_MAX_VIES, x, y, '&', null);
-    }
-
-    public Zoe(Niveau niveau) {
-        super(Zoe.ZOE_MAX_VIES, niveau.getEntrance()[0], niveau.getEntrance()[1], '&', niveau);
-    }
-
-    public void setNiveau(Niveau niveau) {
-        this.niveau = niveau;
-
-        int[] entree = this.niveau.getEntrance();
-        this.x = entree[0];
-        this.y = entree[1];
+    public Zoe(int x, int y, Niveau niveau) {
+        super(Zoe.ZOE_MAX_VIES, x, y, '&', niveau);
+        this.hexaforce = niveau.getStage() - 1;
     }
 
     /**
@@ -50,12 +40,18 @@ public class Zoe extends Personnage {
      * @param item L'item obtenue
      */
     public void affecterItem(String item) {
+        System.out.println("Item : " + item);
         switch (item) {
             case "coeur":
-                this.enleverVie(-1); // L'effet d'en ajouter
+                if (this.getHealthPts() != this.ZOE_MAX_VIES) {
+                    // Pas plus que le max!
+                    this.enleverVie(-1); // L'effet d'en ajouter
+                }
                 break;
             case "potionvie":
-                this.setHealthPts(this.ZOE_MAX_VIES);
+                if (this.getHealthPts() != this.ZOE_MAX_VIES) {
+                    this.setHealthPts(this.ZOE_MAX_VIES);
+                }
                 break;
             case "hexaforce":
                 this.hexaforce++;
@@ -85,9 +81,9 @@ public class Zoe extends Personnage {
         Bloc[] blocs = this.niveau.voisinage(this);
 
         for (Bloc bloc : blocs) {
-            if (bloc instanceof Personnage) {
-                Personnage p = (Personnage) bloc;
-                p.attaquer(this.ZOE_DAMAGE, this);
+            if (bloc instanceof Monstre) {
+                Monstre m = (Monstre) bloc;
+                this.attaquer(this.ZOE_DAMAGE, m);
             }
         }
     }

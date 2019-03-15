@@ -79,6 +79,9 @@ abstract class Personnage extends Bloc {
      * @param source Le personnage résponse
      */
     public void endommager(int damage, Personnage source) {
+        // Ne fais rien si déjà mort
+        if (this.estMort()) { return; }
+
         this.enleverVie(damage);
 
         if (this.estMort()) { this.die(source); }
@@ -89,7 +92,7 @@ abstract class Personnage extends Bloc {
      *
      * @param source Le personnage résponsable
      */
-    private void die(Personnage source) {}
+    protected void die(Personnage source) {}
 
     /**
      * Elle permet de déplacer le personnage
