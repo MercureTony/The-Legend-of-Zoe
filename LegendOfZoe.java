@@ -15,18 +15,20 @@ public class LegendOfZoe {
 
         Scanner scanner = new Scanner(System.in);
 
-        Zoe zoe = new Zoe(0, 0);
-        int niveauActuel = 0;
-        Niveau niveau = new Niveau(niveauActuel);
-        int[] sortie = {0, 0};
+        Niveau niveau = new Niveau(1);
+        niveau.creerGrille();
+        Zoe zoe = new Zoe(niveau);
+        int[] sortie = niveau.getExit();
 
         // Boucle pour chaque tour
         while (!(zoe.estMort() || zoe.hasWon())) {
             // Verifier pour la géneration de nouveau niveau
             // Zoe doit avoir l'hexaforce du niveau et être sur la sortie
-            if (zoe.getNbrHexaforce() == niveauActuel && zoe.getX() == sortie[0] && zoe.getY() == sortie[1]) {
-                niveauActuel++;
-                niveau = new Niveau(niveauActuel);
+            if (zoe.getNbrHexaforce() == niveau.getStage() &&
+                (zoe.getX() == sortie[0] && zoe.getY() == sortie[1])) {
+
+                niveau = new Niveau(niveau.getStage() + 1);
+                niveau.creerGrille();
                 sortie = niveau.getExit();
                 zoe.setNiveau(niveau);
             }

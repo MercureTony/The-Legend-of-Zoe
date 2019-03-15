@@ -31,6 +31,10 @@ public class Zoe extends Personnage {
         super(Zoe.ZOE_MAX_VIES, x, y, '&', null);
     }
 
+    public Zoe(Niveau niveau) {
+        super(Zoe.ZOE_MAX_VIES, niveau.getEntrance()[0], niveau.getEntrance()[1], '&', niveau);
+    }
+
     public void setNiveau(Niveau niveau) {
         this.niveau = niveau;
 

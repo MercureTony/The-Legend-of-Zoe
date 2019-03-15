@@ -8,7 +8,6 @@ public class Niveau {
 
     public Niveau(int stage) {
         this.stage = stage;
-        this.getGrille();
     }
 
     /**
@@ -20,9 +19,9 @@ public class Niveau {
      * Convertir la grille auto-générée en objets
      * Puis d'applatir la grille en tableau 1D
      */
-    private void getGrille() {
+    public void creerGrille() {
         // Prendre niveau pré-génerée
-        Paire<boolean[][], String[]> generee = LevelGenerator.generateLevel(this.stage);
+        Paire<boolean[][], String[]> generee = LevelGenerator.generateLevel(this.getStage());
 
         // Créer les objects Mur
         boolean[][] murs = generee.getKey();
@@ -171,6 +170,9 @@ public class Niveau {
      * @return Disponibilité
      */
     public Boolean checkVide(int x, int y) {
+        if (x >= LevelGenerator.LARGEUR || y >= LevelGenerator.HAUTEUR) {
+            return false;
+        }
         for (Bloc bloc : this.grille) {
             if (bloc.getX() == x && bloc.getY() == y) {
                 return false;
