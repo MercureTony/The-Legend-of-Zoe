@@ -38,7 +38,7 @@ public class LegendOfZoe {
             for (int i = 0 ; i < zoe.getHealthPts() ; i++){
                 vie += "\u2665";
             }
-            for (int i = 0 ; i < (5- zoe.getHealthPts()) ; i++ ){
+            for (int i = 0 ; i < (zoe.ZOE_MAX_VIES - zoe.getHealthPts()) ; i++ ){
                 vie += "\u2661";
             }
 
@@ -46,8 +46,8 @@ public class LegendOfZoe {
             String hx =  "";
             for (int i = 0 ; i < zoe.getNbrHexaforce() ; i++){
                 hx += "\u25B2";
-            }
-            for (int i = 0 ; i < (5- zoe.getNbrHexaforce()) ; i++ ){
+            }2
+            for (int i = 0 ; i < (zoe.ZOE_MAX_HX- zoe.getNbrHexaforce()) ; i++ ){
                 hx += "\u25B3";
             }
 

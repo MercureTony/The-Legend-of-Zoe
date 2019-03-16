@@ -2,8 +2,9 @@ public class Zoe extends Personnage {
 
     private int hexaforce = 0;
 
-    private static final int ZOE_MAX_VIES = 5;
-    private static final int ZOE_DAMAGE = 1;
+    protected static final int ZOE_MAX_VIES = 5;
+    protected static final int ZOE_DAMAGE = 1;
+    protected static final int ZOE_MAX_HX = 6;
 
     /**
      * Déterminer si Zoe à gagné toutes les niveaux.
