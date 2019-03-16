@@ -84,6 +84,7 @@ public class Zoe extends Personnage {
             if (bloc instanceof Monstre) {
                 Monstre m = (Monstre) bloc;
                 this.attaquer(this.ZOE_DAMAGE, m);
+                System.out.println("Zoe a attaqué le monstre !");
             }
         }
     }

@@ -33,7 +33,25 @@ public class LegendOfZoe {
                 zoe = niveau.getZoe();
             }
 
-            System.out.println("Vies : " + zoe.getHealthPts() + " ; HF : " + zoe.getNbrHexaforce() );
+            // Afficher la vie restante en Unicode
+            String vie =  "";
+            for (int i = 0 ; i < zoe.getHealthPts() ; i++){
+                vie += "\u2665";
+            }
+            for (int i = 0 ; i < (5- zoe.getHealthPts()) ; i++ ){
+                vie += "\u2661";
+            }
+
+            // Afficher les hexaforces possédés en Unicode
+            String hx =  "";
+            for (int i = 0 ; i < zoe.getNbrHexaforce() ; i++){
+                hx += "\u25B2";
+            }
+            for (int i = 0 ; i < (5- zoe.getNbrHexaforce()) ; i++ ){
+                hx += "\u25B3";
+            }
+
+            System.out.println("Vies : " + vie + " ; HF : " + hx );
             niveau.affichage();
 
             String actions = scanner.nextLine();

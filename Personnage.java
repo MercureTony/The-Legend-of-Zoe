@@ -53,7 +53,7 @@ abstract class Personnage extends Bloc {
         return this.healthPts <= 0;
     }
 
-    /*
+    /**
      * Enlèver des vies au personnage
      *
      * @param dommages Le montant de dommages
