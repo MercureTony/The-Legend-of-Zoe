@@ -39,7 +39,7 @@ public class LegendOfZoe {
                 // Affiche ♥, qui est textuellement le nombre de vie de Zoé
                 vie += "\u2665";
             }
-            for (int i = 0 ; i < (zoe.ZOE_MAX_VIES - zoe.getHealthPts()) ; i++){
+            for (int i = 0 ; i < (zoe.MAX_VIES - zoe.getHealthPts()) ; i++){
                 // Affiche ♡
                 vie += "\u2661";
             }

@@ -2,8 +2,8 @@ public class Zoe extends Personnage {
 
     private int hexaforce = 0;
 
-    protected static final int ZOE_MAX_VIES = 5;
-    protected static final int ZOE_DAMAGE = 1;
+    protected static final int MAX_VIES = 5;
+    protected static final int DAMAGE = 1;
     public static final int MAX_HX = 6;
 
     /**
@@ -30,7 +30,7 @@ public class Zoe extends Personnage {
      * @oaram niveau
      */
     public Zoe(int x, int y, Niveau niveau) {
-        super(Zoe.ZOE_MAX_VIES, x, y, '&', niveau);
+        super(Zoe.MAX_VIES, x, y, '&', niveau);
         this.hexaforce = niveau.getStage() - 1;
     }
 
@@ -44,14 +44,14 @@ public class Zoe extends Personnage {
         System.out.println("Item : " + item);
         switch (item) {
             case "coeur":
-                if (this.getHealthPts() != this.ZOE_MAX_VIES) {
+                if (this.getHealthPts() != this.MAX_VIES) {
                     // Pas plus que le max!
                     this.enleverVie(-1); // L'effet d'en ajouter
                 }
                 break;
             case "potionvie":
-                if (this.getHealthPts() != this.ZOE_MAX_VIES) {
-                    this.setHealthPts(this.ZOE_MAX_VIES);
+                if (this.getHealthPts() != this.MAX_VIES) {
+                    this.setHealthPts(this.MAX_VIES);
                 }
                 break;
             case "hexaforce":
@@ -84,7 +84,7 @@ public class Zoe extends Personnage {
         for (Bloc bloc : blocs) {
             if (bloc instanceof Monstre) {
                 Monstre m = (Monstre) bloc;
-                this.attaquer(this.ZOE_DAMAGE, m);
+                this.attaquer(this.DAMAGE, m);
             }
         }
     }
