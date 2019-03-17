@@ -16,6 +16,10 @@ abstract class Bloc {
      * Représentation du Personnage
      */
     protected char bloc;
+    /**
+     *
+     */
+    protected boolean passable = false;
 
 
     public Bloc(int x, int y, char bloc){
@@ -67,4 +71,8 @@ abstract class Bloc {
      * @return
      */
     public char affichage() { return this.bloc; }
+
+    public boolean isPassable(){
+        return passable;
+    }
 }
