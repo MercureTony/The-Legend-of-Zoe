@@ -20,7 +20,7 @@ abstract class Bloc {
     protected char bloc;
 
     /**
-     * Booléen qui determine si un Personnage peut passer sur un bloc
+     * Booléen qui determine si un bloc peut passer sur un bloc
      */
     protected boolean passable = false;
 
