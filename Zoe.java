@@ -4,7 +4,7 @@ public class Zoe extends Personnage {
 
     protected static final int ZOE_MAX_VIES = 5;
     protected static final int ZOE_DAMAGE = 1;
-    protected static final int ZOE_MAX_HX = 6;
+    public static final int MAX_HX = 6;
 
     /**
      * Déterminer si Zoe à gagné toutes les niveaux.
@@ -85,7 +85,6 @@ public class Zoe extends Personnage {
             if (bloc instanceof Monstre) {
                 Monstre m = (Monstre) bloc;
                 this.attaquer(this.ZOE_DAMAGE, m);
-                System.out.println("Zoe a attaqué le monstre !");
             }
         }
     }

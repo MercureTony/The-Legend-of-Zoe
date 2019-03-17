@@ -51,9 +51,4 @@ public class Monstre extends Personnage {
         this.deplacer(dx, dy);
     }
 
-    @Override
-    public void attaquer(int damage, Personnage target) {
-        super.attaquer(damage, target);
-        System.out.println("Le monstre a attaqué Zoe !");
-    }
 }

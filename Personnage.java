@@ -70,6 +70,13 @@ abstract class Personnage extends Bloc {
      */
     public void attaquer(int damage, Personnage target) {
         target.endommager(damage, this);
+        // Afficher un message quand un Personnage attaque
+        if (target instanceof Monstre){
+            System.out.println("Zoé a attaqué le monstre !");
+        }
+        else if (target instanceof Zoe){
+            System.out.println("Le monstre a attaqué Zoe !");
+        }
     }
 
     /**

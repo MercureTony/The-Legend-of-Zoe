@@ -174,7 +174,7 @@ public class Niveau {
     public Boolean checkVide(int x, int y) {
         // Si en-dehors de la carte
         if (x < 0 || y < 0) { return false; }
-        if (x >= LevelGenerator.LARGEUR || y >= LevelGenerator.HAUTEUR) {
+        else if (x >= LevelGenerator.LARGEUR || y >= LevelGenerator.HAUTEUR) {
             return false;
         }
 
@@ -186,12 +186,12 @@ public class Niveau {
                     Tresor t = (Tresor) bloc;
                     return t.estOuvert();
                 }
-                if (bloc instanceof Monstre) {
+                else if (bloc instanceof Monstre) {
                     Monstre m = (Monstre) bloc;
                     return m.estMort();
                 }
-                if (bloc instanceof Sortie) { return true; }
-                return false;
+                else if (bloc instanceof Sortie) { return true; }
+                    return false;
             }
         }
         return true;
