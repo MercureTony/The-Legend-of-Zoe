@@ -8,16 +8,19 @@ abstract class Bloc {
      * Coordonnée sur l'axe des abscisses du Personnage
      */
     protected int x;
+
     /**
      * Coordomnée sur l'axe des ordonnées du Personnage
      */
     protected int y;
+
     /**
      * Représentation du Personnage
      */
     protected char bloc;
+
     /**
-     *
+     * Booléen qui determine si un Personnage peut passer sur un bloc
      */
     protected boolean passable = false;
 
@@ -72,7 +75,12 @@ abstract class Bloc {
      */
     public char affichage() { return this.bloc; }
 
-    public boolean estPassable(){
+    /**
+     * Méthode qui permet de retourner l'état d'un bloc (si il est
+     * passable ou pas)
+     * @return
+     */
+    public boolean estPassable() {
         return passable;
     }
 }
