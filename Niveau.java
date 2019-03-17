@@ -181,17 +181,7 @@ public class Niveau {
         // Si bloc actif
         for (Bloc bloc : this.grille) {
             if (bloc != null && bloc.getX() == x && bloc.getY() == y) {
-                // Blocs non-actives
-                if (bloc instanceof Tresor) {
-                    Tresor t = (Tresor) bloc;
-                    return t.estOuvert();
-                }
-                else if (bloc instanceof Monstre) {
-                    Monstre m = (Monstre) bloc;
-                    return m.estMort();
-                }
-                else if (bloc instanceof Sortie) { return true; }
-                    return false;
+                return bloc.estPassable();
             }
         }
         return true;

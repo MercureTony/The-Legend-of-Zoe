@@ -72,7 +72,7 @@ abstract class Bloc {
      */
     public char affichage() { return this.bloc; }
 
-    public boolean isPassable(){
+    public boolean estPassable(){
         return passable;
     }
 }

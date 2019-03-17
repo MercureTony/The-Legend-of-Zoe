@@ -33,7 +33,7 @@ public class LegendOfZoe {
                 zoe = niveau.getZoe();
             }
 
-            // Afficher la vie restante en symbole
+            // Permet d'afficher le nombre de vie sous forme de symbole ♥/♡
             String vie =  "";
             for (int i = 0; i < zoe.getHealthPts(); i++){
                 // Affiche ♥, qui est textuellement le nombre de vie de Zoé
@@ -44,7 +44,7 @@ public class LegendOfZoe {
                 vie += "\u2661";
             }
 
-            // Afficher les hexaforces possédés en Unicode
+            // Permet d'afficher le nombre d'hexaforce sous forme de symbole ▲/△
             String hx =  "";
             for (int i = 0; i < zoe.getNbrHexaforce(); i++){
                 // Affiche ▲, qui représente le nombre d'hexaforce que possède Zoé
