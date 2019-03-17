@@ -1,7 +1,6 @@
 public class Monstre extends Personnage {
 
     private String item;
-    private int difficulte;
     
     /**
      * Constructeur du monstre

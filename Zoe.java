@@ -2,8 +2,8 @@ public class Zoe extends Personnage {
 
     private int hexaforce = 0;
 
-    protected static final int MAX_VIES = 5;
-    protected static final int DAMAGE = 1;
+    public static final int MAX_VIES = 5;
+    public static final int DAMAGE = 1;
     public static final int MAX_HX = 6;
 
     /**
@@ -84,7 +84,7 @@ public class Zoe extends Personnage {
         for (Bloc bloc : blocs) {
             if (bloc instanceof Monstre) {
                 Monstre m = (Monstre) bloc;
-                this.attaquer(this.DAMAGE, m);
+                this.attaquer(this.DAMAGE, m, "Zoe a attaqué le monstre!");
             }
         }
     }

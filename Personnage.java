@@ -68,15 +68,9 @@ abstract class Personnage extends Bloc {
      * @param damage Les points à enlèver
      * @param target Le personnage à affecter
      */
-    public void attaquer(int damage, Personnage target) {
+    public void attaquer(int damage, Personnage target, String message) {
         target.endommager(damage, this);
-        // Afficher un message quand un Personnage attaque
-        if (target instanceof Monstre){
-            System.out.println("Zoé a attaqué le monstre !");
-        }
-        else if (target instanceof Zoe){
-            System.out.println("Le monstre a attaqué Zoe !");
-        }
+        System.out.println(message);
     }
 
     /**
