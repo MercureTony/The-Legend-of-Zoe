@@ -33,25 +33,25 @@ public class LegendOfZoe {
                 zoe = niveau.getZoe();
             }
 
-            // Permet d'afficher le nombre de vie sous forme de symbole ♥/♡
+            // Permet d'afficher le nombre de vie sous forme de symbole
             String vie =  "";
             for (int i = 0; i < zoe.getHealthPts(); i++) {
                 // Affiche ♥, qui est textuellement le nombre de vie de Zoé
                 vie += "\u2665";
             }
             for (int i = 0; i < (zoe.MAX_VIES - zoe.getHealthPts()); i++) {
-                // Affiche ♡
+                // Affiche ♡, qui est textuellement le nombre de vie perdue de Zoe
                 vie += "\u2661";
             }
 
-            // Permet d'afficher le nombre d'hexaforce sous forme de symbole ▲/△
+            // Permet d'afficher le nombre d'hexaforce sous forme de symbole
             String hx =  "";
             for (int i = 0; i < zoe.getNbrHexaforce(); i++) {
                 // Affiche ▲, qui représente le nombre d'hexaforce que possède Zoé
                 hx += "\u25B2";
             }
-            for (int i = 0; i < (zoe.MAX_HX- zoe.getNbrHexaforce()); i++) {
-                // Affiche △
+            for (int i = 0; i < (zoe.MAX_HX - zoe.getNbrHexaforce()); i++) {
+                // Affiche △, qui représente le nombre d'hexaforce manquant à Zoé
                 hx += "\u25B3";
             }
 

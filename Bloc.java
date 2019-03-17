@@ -76,8 +76,9 @@ abstract class Bloc {
     public char affichage() { return this.bloc; }
 
     /**
-     * Méthode qui permet de retourner l'état d'un bloc (si il est
-     * passable ou pas)
+     * Méthode qui permet de retourner l'état d'un bloc (s'il est
+     * passable)
+     *
      * @return
      */
     public boolean estPassable() {
