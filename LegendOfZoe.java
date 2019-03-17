@@ -35,9 +35,9 @@ public class LegendOfZoe {
 
             /**
              * Permet d'afficher le nombre de vie sous forme de symbole
-             * ♥ (nombre de vie de Zoe)/♡ (nombre de vie perdue de Zoe)
+             * ♥ vie remplie/♡ vie perdue
              * et le nombre d'hexaforce sous
-             * ▲ (nombre d'hexaforce de Zoe)/△ (nombre d'hexaforce manquant à Zoe)
+             * ▲ hexaforce possédeés /△ hexaforce manquant
              */
             String vie =  "";
             for (int i = 0; i < zoe.getHealthPts(); i++) {
