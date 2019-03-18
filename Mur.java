@@ -1,3 +1,9 @@
+/**
+ * Classe Mur
+ *
+ * Bloc impassable qui peut se faire creuser
+ * par Zoe.
+ */
 public class Mur extends Bloc {
     
     /**
@@ -8,6 +14,6 @@ public class Mur extends Bloc {
      */
     public Mur(int x, int y) {
         // Spécification de '#' comme caractère
-        super(x, y, '#');
+        super(x, y, '#', false);
     }
 }

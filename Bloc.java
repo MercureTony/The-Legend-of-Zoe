@@ -1,6 +1,6 @@
 /**
  * Cette classe est la classe mère de toutes les autres classes du personnage
- * En effet , elle englobe les méthode de base du personnage .
+ * En effet, elle englobe les méthode de base du personnage.
  */
 abstract class Bloc {
 
@@ -22,13 +22,14 @@ abstract class Bloc {
     /**
      * Booléen qui determine si un personnage peut passer sur le bloc
      */
-    protected boolean passable = false;
+    protected boolean passable;
 
 
-    public Bloc(int x, int y, char bloc){
+    public Bloc(int x, int y, char bloc, boolean passable) {
         this.x = x;
         this.y = y;
         this.bloc = bloc;
+        this.passable = passable;
     }
 
     /**
@@ -36,36 +37,28 @@ abstract class Bloc {
      *
      * @return
      */
-    public int getX() {
-        return this.x;
-    }
+    public int getX() { return this.x; }
 
     /**
      * Méthode qui permet de retourner la valeur de l'ordonnée
      *
      * @return
      */
-    public int getY() {
-        return this.y;
-    }
+    public int getY() { return this.y; }
 
     /**
      * Méthode qui change la coordonné des x par une valeur
      *
      * @param dx
      */
-    public void deplacerX(int dx) {
-        this.x += dx;
-    }
+    public void deplacerX(int dx) { this.x += dx; }
 
     /**
      * Méthode qui change la coordonné des y par une valeur
      *
      * @param dy
      */
-    public void deplacerY(int dy) {
-        this.y += dy;
-    }
+    public void deplacerY(int dy) { this.y += dy; }
 
     /**
      * Méthode qui permet d'afficher une réprésentation textuelle
@@ -81,7 +74,5 @@ abstract class Bloc {
      *
      * @return
      */
-    public boolean estPassable() {
-        return passable;
-    }
+    public boolean estPassable() { return this.passable; }
 }

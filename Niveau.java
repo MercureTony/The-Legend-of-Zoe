@@ -1,3 +1,8 @@
+/**
+ * Classe Niveau
+ *
+ * Réprésente un étape dans le parcours de Zoe avec 1 hexaforce.
+ */
 public class Niveau {
 
     private Bloc[] grille = new Bloc[LevelGenerator.LARGEUR * LevelGenerator.HAUTEUR];
@@ -133,7 +138,7 @@ public class Niveau {
         return voisinage;
     }
 
-    /*
+    /**
      * Détruire les murs dans la grille
      * L'objet Zoe décide quel bloc
      *
@@ -178,11 +183,11 @@ public class Niveau {
             return false;
         }
 
-        // Si bloc actif
-        for (Bloc bloc : this.grille) {
-            if (bloc != null && bloc.getX() == x && bloc.getY() == y) {
-                return bloc.estPassable();
-            }
+        // Ceci suppose que les blocs impassables sont fixes à la position
+        // initiale.
+        Bloc bloc = this.grille[y * LevelGenerator.HAUTEUR + x];
+        if (bloc != null && bloc.getX() == x && bloc.getY() == y) {
+            return bloc.estPassable();
         }
         return true;
     }

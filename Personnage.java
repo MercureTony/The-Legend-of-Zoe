@@ -1,6 +1,6 @@
 /**
  * Cette classe donne une défintion plus précise du bloc, avec des caractéristques
- * d'un personnage du jeu ayant des propriétés propres à lui .
+ * d'un personnage du jeu ayant des propriétés propres à lui.
  */
 abstract class Personnage extends Bloc {
     /**
@@ -20,7 +20,7 @@ abstract class Personnage extends Bloc {
      * @param niveau
      */
     public Personnage(int healthPts, int x, int y, char bloc, Niveau niveau) {
-        super(x, y, bloc);
+        super(x, y, bloc, true);
         this.healthPts = healthPts;
         this.niveau = niveau;
     }
@@ -69,8 +69,10 @@ abstract class Personnage extends Bloc {
      * @param target Le personnage à affecter
      */
     public void attaquer(int damage, Personnage target, String message) {
-        target.endommager(damage, this);
-        System.out.println(message);
+        if (!target.estMort()) {
+            target.endommager(damage, this);
+            System.out.println(message);
+        }
     }
 
     /**

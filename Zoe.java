@@ -1,3 +1,8 @@
+/**
+ * Classe Zoe
+ *
+ * Le personnage principale du jeu
+ */
 public class Zoe extends Personnage {
 
     private int hexaforce = 0;

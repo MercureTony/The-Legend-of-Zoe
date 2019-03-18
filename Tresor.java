@@ -1,3 +1,9 @@
+/**
+ * Classe trésor
+ *
+ * Les trésors sont placés autour de chaque niveau
+ * avec un item qui affecte Zoe, avec effet quand ouvert.
+ */
 public class Tresor extends Bloc {
 
     private String item;
@@ -13,7 +19,7 @@ public class Tresor extends Bloc {
      * @param String item L'effet du trésor sur Zoe
      */
     public Tresor(int x, int y, String item) {
-        super(x, y, '$');
+        super(x, y, '$', false);
         this.item = item;
     }
 
@@ -26,6 +32,7 @@ public class Tresor extends Bloc {
     public void ouvrir(Zoe zoe) {
         this.bloc = '_';
         this.ouvert = true;
+        this.passable = true;
         zoe.affecterItem(this.item);
     }
 
