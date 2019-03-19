@@ -49,7 +49,7 @@ public class LegendOfZoe {
             for (int i = 0; i < zoe.getNbrHexaforce(); i++) {
                 hx += "\u25B2 "; // ▲
             }
-            for (int i = 0; i < (zoe.MAX_HX- zoe.getNbrHexaforce()); i++) {
+            for (int i = 0; i < (zoe.MAX_HX - zoe.getNbrHexaforce()); i++) {
                 hx += "\u25B3 "; // △
             }
 
